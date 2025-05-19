@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { FlatList, RefreshControl, TouchableOpacity } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
-import { HeaderContainer, HeaderTitle } from '../components/Header';
+import Header from '../components/Header';
 import theme from '../styles/theme';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -70,6 +70,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
 
   const renderAppointment = ({ item }: { item: Appointment }) => {
     const doctor = getDoctorInfo(item.doctorId);
+
+    
     
     return (
       <AppointmentCard>
@@ -97,9 +99,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
 
   return (
     <Container>
+      <Header />
       <HeaderContainer>
         <HeaderTitle>Minhas Consultas</HeaderTitle>
       </HeaderContainer>
+      
 
       <Content>
         <Button
@@ -140,6 +144,19 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
 const Container = styled.View`
   flex: 1;
   background-color: ${theme.colors.background};
+`;
+
+const HeaderContainer = styled.View`
+  background-color: ${theme.colors.background};
+  padding: ${theme.spacing.medium}px;
+  border-bottom-width: 1px;
+  border-bottom-color: ${theme.colors.border};
+`;
+
+const HeaderTitle = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+  color: ${theme.colors.text};
 `;
 
 const Content = styled.View`
